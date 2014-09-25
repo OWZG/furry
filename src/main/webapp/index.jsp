@@ -1,6 +1,5 @@
 <%--
     @author kongtong.ouyang created on 2014/9/25, 10:06
-    @version 1$
  --%>
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
