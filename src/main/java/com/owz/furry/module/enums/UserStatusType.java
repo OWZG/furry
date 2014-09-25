@@ -10,8 +10,17 @@ import com.owz.furry.common.mybatis.EnumTrait;
  * @version $Id$
  */
 public enum UserStatusType implements EnumTrait {
-    ;
 
+    INACTIVE(1, "未激活"),
+    ACTIVATED(2, "已激活");
+
+    private int code;
+    private String text;
+
+    private UserStatusType(int code, String text) {
+        this.code = code;
+        this.text = text;
+    }
 
     @Override
     public int getCode() {
