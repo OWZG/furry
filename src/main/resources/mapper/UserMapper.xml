@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.owz.furry.user.dao.IUserDao">
+
+    <resultMap id="UserResultMap" type="com.owz.furry.module.po.User">
+        <result column="user_id" property="userId" />
+        <result column="user_email" property="userId" />
+        <result column="user_password" property="userPassword" />
+        <result column="status" property="status" typeHandler="com.owz.furry.module.enums.handler.UserStatusTypeHandler"/>
+    </resultMap>
+
+    <select id="queryByUserEmail" resultMap="UserResultMap">
+        SELECT
+        user_password,
+        status_type
+        FROM yo_user
+        where user_email = #{userEmail}
+    </select>
+
+</mapper>
