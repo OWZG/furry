@@ -8,5 +8,5 @@ import com.owz.furry.module.po.User;
  */
 public interface IUserService {
 
-    User queryByUserEmai(String userEmail);
+    User queryByUserEmail(String userEmail);
 }
