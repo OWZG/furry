@@ -37,11 +37,11 @@
         <property name="securityManager" ref="securityManager"/>
     </bean>
 
-    <bean id="shiroRealm" class="com.owz.yo.OWZShiroRealm">
+    <bean id="shiroRealm" class="com.owz.furry.OWZShiroRealm">
         <property name="credentialsMatcher" ref="credentialsMatcher"></property>
     </bean>
 
-    <bean id="credentialsMatcher" class="com.owz.yo.OWZCredentialsMatcher" />
+    <bean id="credentialsMatcher" class="com.owz.furry.OWZCredentialsMatcher" />
 
     <bean id="sessionManager" class="org.apache.shiro.web.session.mgt.DefaultWebSessionManager" />
 

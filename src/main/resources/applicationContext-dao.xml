@@ -9,46 +9,59 @@
 
     <context:property-placeholder location="classpath:jdbc.properties"/>
 
-    <context:component-scan base-package="com.owz.furry.accout.dao"/>
+    <context:component-scan base-package="com.owz.furry.*.dao"/>
 
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-        <property name="dataSource" ref="dataSource"/>
+        <property name="dataSource" ref="readDataSource"/>
         <property name="mapperLocations" value="classpath:mappers/*.xml"/>
         <property name="configLocation" value="classpath:mybatis-config.xml"/>
     </bean>
 
-    <!--<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">-->
-        <!--<constructor-arg ref="sqlSessionFactory"/>-->
-    <!--</bean>-->
-
     <bean id="mapperScannerConfigurer" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage" value="com.owz.yo.*.mapper"/>
+        <property name="basePackage" value="com.owz.furry.*.dao"/>
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
     </bean>
 
-    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
-        <property name="url" value="${jdbc.url}"></property>
-        <property name="username" value="${jdbc.username}"></property>
-        <property name="password" value="${jdbc.password}"></property>
+    <bean id="readDataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
+        <property name="url" value="${jdbc.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
 
-        <property name="filters" value="${jdbc.filters}"></property>
+        <property name="filters" value="${jdbc.filters}"/>
 
-        <property name="maxActive" value="${jdbc.maxActive}"></property>
-        <property name="initialSize" value="${jdbc.initialSize}"></property>
-        <property name="maxWait" value="${jdbc.maxWait}"></property>
-        <property name="minIdle" value="${jdbc.minIdle}"></property>
-
-        <property name="validationQuery" value="${jdbc.validationQuery}"></property>
-        <property name="testWhileIdle" value="${jdbc.testWhileIdle}"></property>
-
+        <property name="maxActive" value="${jdbc.maxActive}"/>
+        <property name="initialSize" value="${jdbc.initialSize}"/>
+        <property name="maxWait" value="${jdbc.maxWait}"/>
+        <property name="minIdle" value="${jdbc.minIdle}"/>
+        <property name="validationQuery" value="${jdbc.validationQuery}"/>
+        <property name="testWhileIdle" value="${jdbc.testWhileIdle}"/>
         <property name="proxyFilters">
             <list>
-                <ref bean="stat-filter"/>
+                <ref bean="StatFilter"/>
+            </list>
+        </property>
+    </bean>
+    <bean id="writeDataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
+        <property name="url" value="${jdbc.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+
+        <property name="filters" value="${jdbc.filters}"/>
+
+        <property name="maxActive" value="${jdbc.maxActive}"/>
+        <property name="initialSize" value="${jdbc.initialSize}"/>
+        <property name="maxWait" value="${jdbc.maxWait}"/>
+        <property name="minIdle" value="${jdbc.minIdle}"/>
+        <property name="validationQuery" value="${jdbc.validationQuery}"/>
+        <property name="testWhileIdle" value="${jdbc.testWhileIdle}"/>
+        <property name="proxyFilters">
+            <list>
+                <ref bean="StatFilter"/>
             </list>
         </property>
     </bean>
 
-    <bean id="stat-filter" class="com.alibaba.druid.filter.stat.StatFilter">
+    <bean id="StatFilter" class="com.alibaba.druid.filter.stat.StatFilter">
         <property name="mergeSql" value="true"/>
         <property name="logSlowSql" value="true"/>
         <property name="connectionStackTraceEnable" value="true"/>
