@@ -26,4 +26,8 @@ public enum UserStatusType implements EnumTrait {
     public int getCode() {
         return 0;
     }
+
+    public String getText() {
+        return text;
+    }
 }
