@@ -19,5 +19,6 @@ public class UserServiceImplTest extends SpringTest {
     @Test
     public void queryByUserEmail(){
         User user = userDao.queryByUserEmail("1");
+        System.out.println(user);
     }
 }
