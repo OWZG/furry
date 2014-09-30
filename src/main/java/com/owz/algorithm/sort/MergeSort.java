@@ -22,7 +22,7 @@ public class MergeSort {
         List data1 = new ArrayList<E>(half);
         List data2 = new ArrayList<E>(list.size() - half);
         System.arraycopy(list, 0, data1, 0, data1.size());
-        System.arraycopy(list, 0, data1, 0, data1.size());
+        System.arraycopy(list, 0, data2, 0, data1.size());
     }
 
     public static void main(String[] args) {
